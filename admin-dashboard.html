@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard - Campus Wallet</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        button.edit-btn, button.delete-btn {
+            padding: 3px 6px;
+            margin: 0 2px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        button.edit-btn { background-color: #4CAF50; color: white; border: none; border-radius: 3px; }
+        button.delete-btn { background-color: #f44336; color: white; border: none; border-radius: 3px; }
+    </style>
+</head>
+<body>
+<nav>
+    <div class="logo">Campus Wallet - Admin</div>
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+    </ul>
+</nav>
+
+<section>
+    <h2>Add Student Contribution</h2>
+    <input type="text" id="student-name" placeholder="Student Name">
+    <input type="text" id="class-name" placeholder="Class">
+    <input type="number" id="contribution" placeholder="Contribution ₹">
+    <button onclick="addContribution()">Add Contribution</button>
+</section>
+
+<section>
+    <h2>All Contributions</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Sr.No.</th>
+            <th>Student Name</th>
+            <th>Class</th>
+            <th>Contribution (₹)</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody id="students-table"></tbody>
+    </table>
+</section>
+
+<section>
+    <h2>Total Collection</h2>
+    <p id="total-collection">₹0</p>
+</section>
+
+<script>
+    let students = JSON.parse(localStorage.getItem("students")) || [];
+    let editIndex = null;
+
+    function addContribution() {
+        const name = document.getElementById("student-name").value.trim();
+        const className = document.getElementById("class-name").value.trim();
+        const contribution = Number(document.getElementById("contribution").value);
+
+        if(name && className && contribution) {
+            if(editIndex !== null) {
+                students[editIndex] = { name, className, contribution };
+                editIndex = null;
+                document.querySelector("button").innerText = "Add Contribution";
+            } else {
+                students.push({ name, className, contribution });
+            }
+
+            localStorage.setItem("students", JSON.stringify(students));
+            renderTable();
+
+            document.getElementById("student-name").value = "";
+            document.getElementById("class-name").value = "";
+            document.getElementById("contribution").value = "";
+        } else {
+            alert("Please fill all fields!");
+        }
+    }
+
+    function renderTable() {
+        const table = document.getElementById("students-table");
+        table.innerHTML = "";
+        let total = 0;
+
+        students.forEach((s, index) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${index + 1}</td>
+                <td>${s.name}</td>
+                <td>${s.className}</td>
+                <td>₹${s.contribution}</td>
+                <td>
+                    <button class="edit-btn" onclick="editContribution(${index})">✏️</button>
+                    <button class="delete-btn" onclick="deleteContribution(${index})">🗑️</button>
+                </td>
+            `;
+            table.appendChild(row);
+            total += s.contribution;
+        });
+
+        document.getElementById("total-collection").innerText = "₹" + total;
+    }
+
+    function editContribution(index) {
+        const s = students[index];
+        document.getElementById("student-name").value = s.name;
+        document.getElementById("class-name").value = s.className;
+        document.getElementById("contribution").value = s.contribution;
+        editIndex = index;
+        document.querySelector("button").innerText = "Update Contribution";
+    }
+
+    function deleteContribution(index) {
+        if(confirm("Are you sure you want to delete this contribution?")) {
+            students.splice(index, 1);
+            localStorage.setItem("students", JSON.stringify(students));
+            renderTable();
+        }
+    }
+
+    // Initial render
+    renderTable();
+</script>
+</body>
+</html>

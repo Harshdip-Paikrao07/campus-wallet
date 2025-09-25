@@ -1,0 +1,325 @@
+/* ===== General Body ===== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background: #f4f6f8; /* soft gray background */
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+/* ===== Navbar ===== */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 30px;
+    background-color: #ffffff; /* White background */
+    color: #333; /* Dark text */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08); /* subtle shadow */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+nav .logo {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #1a73e8; /* accent color for logo */
+}
+
+nav .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav .nav-links li a {
+    color: #333; /* dark link color */
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 5px 8px;
+    border-radius: 5px;
+    transition: background 0.3s, color 0.3s;
+}
+
+nav .nav-links li a:hover {
+    background-color: #1a73e8; /* subtle hover background */
+    color: white; /* link text changes on hover */
+}
+
+/* ===== Sections ===== */
+section {
+    padding: 25px 35px;
+    margin: 20px auto;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+    max-width: 1000px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+.events-section{
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+    margin: 20px auto;
+    max-width: 1060px;
+   
+}
+
+.event-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    flex: 1 1 250px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+.event-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.event-card p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.event-card button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #1a73e8; /* Accent button color */
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.event-card button:hover {
+    background: #155ab6;
+    transform: translateY(-2px);
+}
+
+
+
+/* Event Buttons */
+.events-buttons button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #FF6EC7, #8E44AD);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.events-buttons button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+/* ===== Input Fields ===== */
+input[type="text"], input[type="number"] {
+    padding: 12px 15px;
+    margin: 5px 10px 15px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: calc(30% - 10px);
+    transition: all 0.3s;
+}
+
+input[type="text"]:focus, input[type="number"]:focus {
+    border-color: #0072ff;
+    box-shadow: 0 0 5px rgba(0,114,255,0.3);
+    outline: none;
+}
+
+/* ===== Buttons ===== */
+button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #0072ff, #00c6ff);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* ===== Contributions Table ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
+    border: 1px solid #e0e0e0;
+    padding: 12px 15px;
+    text-align: left;
+    transition: background 0.3s;
+}
+
+th {
+    background-color: #0072ff;
+    color: white;
+    text-transform: uppercase;
+}
+
+tr:nth-child(even) {
+    background-color: #f7f9fc;
+}
+
+tr:hover {
+    background-color: #e1f0ff;
+}
+
+/* ===== Total Collection ===== */
+#total-collection {
+    font-size: 22px;
+    font-weight: 700;
+    color: #0072ff;
+    margin-top: 10px;
+}
+
+/* ===== Responsive ===== */
+@media screen and (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    input[type="text"], input[type="number"] {
+        width: 100%;
+        margin: 5px 0;
+    }
+}
+/* Overview Section Styles */
+/* Full-width Hero Overview Section */
+#overview {
+    position: relative;
+    width: 100%;
+    height: 70vh; /* Hero height (adjust as needed) */
+    overflow: hidden;
+}
+
+#overview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Make image cover entire section */
+    display: block;
+}
+
+/* Text overlay */
+#overview h1,
+#overview p {
+    position: absolute;
+    left: 39%;
+    bottom: 8%;
+    transform: translate(-80%, -50%); /* Center text */
+    /* text-align: center; */
+    color: 
+rgb(244, 287, 137); /* Default white, can adjust */
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.7); /* Makes text readable on any image */
+    margin: 0;
+}
+
+#overview h1 {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 60px;
+    
+}
+
+#overview p {
+    font-size: 30pxm;
+    max-width: 450px;
+    margin-bottom: 20px;
+    margin-right: 100px;
+    color:rgb(95, 227, 174);
+    font-weight: bold;
+
+;
+    /* font-weight: bold; */
+}
+.event-card{
+    a{
+        text-decoration: none;
+        color:#FFFF;
+    }
+}
+
+
+/* Container for description and filters */
+.contributions-header {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f9f9f9; /* light background for highlight */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Paragraph styling */
+.contributions-description {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+/* Filters inline styling */
+.contributions-filters {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Labels */
+.contributions-filters label {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+/* Dropdown styling */
+.contributions-filters select {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+/* Optional: hover effect for dropdown */
+.contributions-filters select:hover {
+    border-color: #4CAF50;
+}

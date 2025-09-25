@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Contributions - Campus Wallet</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Campus Wallet</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="events.html">Events</a></li>
+        </ul>
+    </nav>
+
+    <section id="all-contributions">
+        <h2>All Contributions</h2>
+        <p>Here you can view the contributions made by students for various events and classes.</p>
+
+        <!-- Filters -->
+        <div id="filters-inline">
+            <label for="class-filter">Class: </label>
+            <select id="class-filter" onchange="renderTable()"></select>
+
+            <label for="amount-filter">Amount: </label>
+            <select id="amount-filter" onchange="renderTable()"></select>
+        </div>
+
+        <!-- Contributions Table -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Sr.No.</th>
+                    <th>Student Name</th>
+                    <th>Class</th>
+                    <th>Contribution (₹)</th>
+                </tr>
+            </thead>
+            <tbody id="students-table"></tbody>
+        </table>
+
+        <p id="total-collection">Total Collection: ₹0</p>
+    </section>
+
+    <script>
+        let students = JSON.parse(localStorage.getItem("students")) || [];
+
+        function generateFilters() {
+            const classSet = new Set(students.map(s => s.className));
+            const amountSet = new Set(students.map(s => s.contribution));
+
+            const classFilter = document.getElementById("class-filter");
+            classFilter.innerHTML = "<option value='All'>All</option>";
+            classSet.forEach(cls => classFilter.innerHTML += `<option value="${cls}">${cls}</option>`);
+
+            const amountFilter = document.getElementById("amount-filter");
+            amountFilter.innerHTML = "<option value='All'>All</option>";
+            amountSet.forEach(amount => amountFilter.innerHTML += `<option value="${amount}">${amount}</option>`);
+        }
+
+        function renderTable() {
+            const selectedClass = document.getElementById("class-filter").value;
+            const selectedAmount = document.getElementById("amount-filter").value;
+
+            const table = document.getElementById("students-table");
+            table.innerHTML = "";
+
+            let filtered = students.filter(s =>
+                (selectedClass === "All" || s.className === selectedClass) &&
+                (selectedAmount === "All" || s.contribution.toString() === selectedAmount)
+            );
+
+            let total = 0;
+            filtered.forEach((s, index) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${s.name}</td>
+                    <td>${s.className}</td>
+                    <td>₹${s.contribution}</td>
+                `;
+                table.appendChild(row);
+                total += s.contribution;
+            });
+
+            document.getElementById("total-collection").innerText = "Total Collection: ₹" + total;
+        }
+
+        // Initialize
+        generateFilters();
+        renderTable();
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Login - Campus Wallet</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section class="login-card">
+        <h2>Admin Login</h2>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+        <p id="error" style="color:red;"></p>
+    </section>
+
+    <script>
+        function login() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            // Simple hardcoded admin credentials
+            if(username === "Harshdip@7575" && password === "124124") {
+                // Redirect to admin page
+                window.location.href = "admin-dashboard.html";
+            } else {
+                document.getElementById("error").innerText = "Invalid Credentials!";
+            }
+        }
+    </script>
+</body>
+</html>

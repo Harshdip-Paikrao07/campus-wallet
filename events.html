@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Wallet</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Minimal responsive header styling */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            flex-wrap: wrap; /* allows items to wrap on smaller screens */
+        }
+
+        nav .logo {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            flex-wrap: wrap; /* wrap links on small screens */
+            gap: 15px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+        }
+
+        nav ul li a:hover {
+            background-color: #45a049;
+        }
+
+        /* Event card buttons */
+        .event-card button {
+            padding: 8px 12px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        .event-card button a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .event-card button:hover {
+            background-color: #45a049;
+        }
+
+        /* Event card section */
+        .events-section {
+            margin: 20px;
+        }
+
+        .event-card {
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">Campus Wallet</div>
+        <ul>
+            <li><a href="index.html">Overview</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="#organizers">Organizers</a></li>
+        </ul>
+    </nav>
+
+    <div class="events-section">
+        <div class="event-card">
+            <h3>Fresher Party 2025-26</h3>
+            <p>BCA</p>
+            <p>30-sep-2025</p>
+            <button><a href="studentContribution.html">View Contributors</a></button>
+            <button>See Event Details</button>
+        </div>
+    </div>
+</body>
+</html>
